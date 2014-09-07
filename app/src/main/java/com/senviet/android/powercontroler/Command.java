@@ -16,16 +16,18 @@
 package com.senviet.android.powercontroler;
 
 public class Command {
-    protected String name;
-    protected String[] command;
+protected String name;
+protected String[] command;
+protected int iconResource;
 
     public Command()
     {}
 
-    public Command(String name, String[] command)
+    public Command(String name, String[] command, int iconResource)
     {
         this.name = name;
         this.command = command;
+        this.setIconResource(iconResource);
     }
 
     public String getName() {
@@ -42,5 +44,13 @@ public class Command {
 
     public void setCommand(String[] command) {
         this.command = command;
+    }
+
+    public int getIconResource() {
+        return iconResource;
+    }
+
+    public void setIconResource(int iconResource) {
+        this.iconResource = iconResource;
     }
 }

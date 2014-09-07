@@ -21,15 +21,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdapterCommand extends ArrayAdapter<Command> {
+public class CommandAdapter extends ArrayAdapter<Command> {
     private Context context;
     List<Command> commandList;
-    public AdapterCommand(Context context, List items)
+    public CommandAdapter(Context context, List items)
     {
         super(context, R.layout.list_item_command, items);
         this.commandList = items;
@@ -43,15 +44,17 @@ public class AdapterCommand extends ArrayAdapter<Command> {
         }
         return null;
     }
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        View rowView = convertView;
-        if (rowView == null) {
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            rowView = inflater.inflate(R.layout.list_item_command, parent, false);
-        }
-        TextView textView = (TextView) rowView.findViewById(R.id.tv_name);
-        textView.setText(commandList.get(position).getName());
-        return rowView;
+@Override
+public View getView(int position, View convertView, ViewGroup parent) {
+    View rowView = convertView;
+    if (rowView == null) {
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        rowView = inflater.inflate(R.layout.list_item_command, parent, false);
     }
+    TextView textView = (TextView) rowView.findViewById(R.id.tv_name);
+    ImageView ivIcon = (ImageView) rowView.findViewById(R.id.iv_icon);
+    textView.setText(commandList.get(position).getName());
+    ivIcon.setImageResource(commandList.get(position).getIconResource());
+    return rowView;
+}
 }
